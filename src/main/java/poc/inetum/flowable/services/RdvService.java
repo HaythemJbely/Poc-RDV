@@ -26,8 +26,11 @@ public class RdvService {
         LocalDateTime now = LocalDateTime.now();
         System.out.println(dtf.format(now));
     }
-    public Optional<Rdv> getRDV(Long id) throws FunctionalException {
-        return this.rdvRepository.findById(id);
+    public Rdv getRDV(Long id) throws FunctionalException {
+        Optional<Rdv> rdv = this.rdvRepository.findById(id);
+        if(rdv.isPresent())
+        return rdv.get();
+        return null;
     }
 
     public Message Refuse(){
